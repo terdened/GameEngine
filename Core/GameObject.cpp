@@ -3,3 +3,10 @@
 //
 
 #include "GameObject.h"
+namespace GameEngine {
+    void GameObject::Draw() {
+        for(int i = 0; i < shapes.size(); i++) {
+            renderWindow.draw(shapes[i]);
+        }
+    }
+}

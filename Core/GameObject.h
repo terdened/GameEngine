@@ -7,15 +7,18 @@
 
 #include <SFML/Graphics.hpp>
 
-class GameObject {
-private:
-    sf::RenderWindow& renderWindow;
-    sf::Shape* shapes;
-public:
-    GameObject(sf::RenderWindow& app): renderWindow(app)
-    { }
-    void Draw();
-};
+namespace GameEngine {
+    class GameObject {
+    private:
+        sf::RenderWindow& renderWindow;
+        std::vector<sf::Shape> shapes;
+    public:
+        GameObject(sf::RenderWindow& app): renderWindow(app)
+        { }
+        void Draw();
+        virtual void Update() = 0;
+    };
+}
 
 
 #endif //GAME_GAMEOBJECT_H
