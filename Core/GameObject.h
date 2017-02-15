@@ -6,18 +6,24 @@
 #define GAME_GAMEOBJECT_H
 
 #include <SFML/Graphics.hpp>
+using namespace std;
 
 namespace GameEngine {
     class GameObject {
     private:
         sf::RenderWindow& renderWindow;
-        std::vector<sf::Shape> shapes;
+        vector<sf::Shape> shapes;
+        vector<GameObject> childs;
     public:
         GameObject(sf::RenderWindow& app): renderWindow(app)
         { }
         void Draw();
-        virtual void Update() = 0;
+        virtual void Update();
+        virtual void Init() = 0;
+        void AddChild(GameObject child);
+        void AddShape(sf::Shape shape);
     };
+
 }
 
 

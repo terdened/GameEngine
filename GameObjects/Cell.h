@@ -9,12 +9,13 @@
 
 using namespace GameEngine;
 
-class Cell : GameObject {
+class Cell : public GameObject {
 private:
 public:
     Cell(sf::RenderWindow& app): GameObject(app)
         { }
     void Update();
+    void Init();
 };
 
 

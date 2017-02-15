@@ -5,6 +5,7 @@
 #include "Views/FieldView.h"
 #include "Views/BaseView.h"
 #include "Models/FieldModel.h"
+#include "Scenes/MainScene.h"
 
 using namespace sf;
 using namespace std;
@@ -22,6 +23,9 @@ int main() {
     FieldModel fieldModel(5,7);
     FieldView fieldView(fieldModel);
 
+    MainScene scene(app);
+    scene.Init();
+
     while (app.isOpen()) {
         Event event;
         while (app.pollEvent(event)) {
@@ -29,7 +33,7 @@ int main() {
                 app.close();
         }
 
-        fieldView.Draw(app);
+        scene.Draw();
         app.display();
     }
 
