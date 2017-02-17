@@ -8,31 +8,14 @@ using namespace sf;
 
 void Cell::Update() {
     GameObject::Update();
-    Move(Vector2f(1,1));
-    Rotate(1);
 }
 
 void Cell::Init() {
     RectangleShape* tile = new RectangleShape();
-    tile->setPosition(0, 0);
-    Vector2f size(100, 100);
+    tile->setPosition(3, 3);
+    Vector2f size(94, 94);
     tile->setSize(size);
     tile->setFillColor(Color(237, 194, 46));
     AddShape(tile);
-
-    SetScale(Vector2f(0.5f, 1.0f));
-
-    Font font;
-    if (!font.loadFromFile("arial.ttf"))
-    {
-        //Error
-    }
-
-    Text* text = new Text();
-    (*text).setFont(font);
-    (*text).setString("2048");
-    (*text).setCharacterSize(32);
-    (*text).setPosition(15, 35);
-
-    //AddShape(text);
+    SetPivotPoint(Vector2f(50, 50));
 }

@@ -7,7 +7,7 @@ namespace GameEngine {
     void Scene::Draw() {
         list<GameObject*>::iterator gameObjectIter;
         for (gameObjectIter = childs.begin(); gameObjectIter != childs.end(); gameObjectIter++)
-            (**gameObjectIter).Draw();
+            (**gameObjectIter).Draw(sf::Transform());
     }
 
     void Scene::Update() {

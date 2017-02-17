@@ -4,7 +4,7 @@
 
 #include "MainScene.h"
 
-#include "../GameObjects/Cell.h"
+#include "../GameObjects/Field.h"
 
 using namespace sf;
 
@@ -13,7 +13,8 @@ void MainScene::Update() {
 }
 
 void MainScene::Init() {
-    Cell *cell = new Cell(renderWindow);
-    (*cell).Init();
-    AddChild(cell);
+    Field *field = new Field(renderWindow);
+    field->Init();
+    field->SetPosition(sf::Vector2f(350, 150));
+    AddChild(field);
 }

@@ -13,7 +13,6 @@ using namespace std;
 namespace GameEngine {
     class GameObject {
     private:
-        sf::RenderWindow& renderWindow;
         list<sf::Drawable*> shapes;
         list<GameObject*> childs;
         float x;
@@ -23,14 +22,19 @@ namespace GameEngine {
         float scaleY;
         int depth;
         string name;
+        float pivotX;
+        float pivotY;
+    protected:
+        sf::RenderWindow& renderWindow;
     public:
         //creation functions
-        GameObject(sf::RenderWindow& app): renderWindow(app), x(0), y(0), depth(0), name("untitled"), rotation(0), scaleX(1), scaleY(1)
+        GameObject(sf::RenderWindow& app): renderWindow(app), x(0), y(0), depth(0), name("untitled"), rotation(0),
+                                           scaleX(1), scaleY(1), pivotX(0), pivotY(0)
             {    }
         virtual void Init() = 0;
 
         //time erase functions
-        void Draw();
+        void Draw(sf::Transform parentTransform);
         virtual void Update();
 
         //structure functions
@@ -69,6 +73,20 @@ namespace GameEngine {
             scaleY = value;
         }
 
+        float PivotX() {
+            return pivotX;
+        }
+        void PivotX(float value) {
+            pivotX = value;
+        }
+
+        float PivotY() {
+            return pivotY;
+        }
+        void PivotY(float value) {
+            pivotY = value;
+        }
+
         int Depth() {
             return depth;
         }
@@ -88,6 +106,7 @@ namespace GameEngine {
         void SetPosition(sf::Vector2f newPosition);
         void Rotate(float value);
         void SetScale(sf::Vector2f scale);
+        void SetPivotPoint(sf::Vector2f pivotPoint);
     };
 
 }

@@ -5,10 +5,11 @@
 #include "GameObject.h"
 namespace GameEngine {
 
-    void GameObject::Draw() {
+    void GameObject::Draw(sf::Transform parentTransform) {
         sf::Transform transform;
+        transform.combine(parentTransform);
         transform.translate(x,y);
-        transform.rotate(rotation);
+        transform.rotate(rotation, pivotX, pivotY);
         transform.scale(scaleX, scaleY);
         sf::RenderStates renderStates(transform);
 
@@ -18,7 +19,7 @@ namespace GameEngine {
 
         list<GameObject*>::iterator gameObjectIter;
         for (gameObjectIter = childs.begin(); gameObjectIter != childs.end(); gameObjectIter++)
-            (**gameObjectIter).Draw();
+            (**gameObjectIter).Draw(transform);
     }
 
     void GameObject::Update() {
@@ -58,5 +59,10 @@ namespace GameEngine {
     void GameObject::SetScale(sf::Vector2f scale) {
         scaleX = scale.x;
         scaleY = scale.y;
+    }
+
+    void GameObject::SetPivotPoint(sf::Vector2f pivotPoint) {
+        pivotX = pivotPoint.x;
+        pivotY = pivotPoint.y;
     }
 }
