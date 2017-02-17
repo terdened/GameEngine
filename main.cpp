@@ -1,10 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <time.h>
-#include <list>
 #include "Views/FieldView.h"
-#include "Views/BaseView.h"
-#include "Models/FieldModel.h"
 #include "Scenes/MainScene.h"
 
 using namespace sf;
@@ -20,9 +16,6 @@ int main() {
     RenderWindow app(VideoMode(W, H), "Match 2048");
     app.setFramerateLimit(60);
 
-    FieldModel fieldModel(5,7);
-    FieldView fieldView(fieldModel);
-
     MainScene scene(app);
     scene.Init();
 
@@ -32,9 +25,13 @@ int main() {
             if (event.type == Event::Closed)
                 app.close();
         }
+        app.clear();
 
+        scene.Update();
         scene.Draw();
+
         app.display();
+        sleep(sf::milliseconds(10));
     }
 
     return 0;

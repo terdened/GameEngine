@@ -9,10 +9,11 @@
 using namespace sf;
 
 void MainScene::Update() {
-
+    Scene::Update();
 }
 
 void MainScene::Init() {
-    Cell cell(renderWindow);
+    Cell *cell = new Cell(renderWindow);
+    (*cell).Init();
     AddChild(cell);
 }

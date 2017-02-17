@@ -13,7 +13,7 @@ using namespace std;
 namespace GameEngine {
     class Scene {
     private:
-        vector<GameObject> childs;
+        list<GameObject*> childs;
     protected:
         sf::RenderWindow& renderWindow;
     public:
@@ -22,7 +22,7 @@ namespace GameEngine {
         void Draw();
         virtual void Update();
         virtual void Init() = 0;
-        void AddChild(GameObject child);
+        void AddChild(GameObject* child);
     };
 }
 

@@ -15,7 +15,7 @@ public:
     MainScene(sf::RenderWindow& app): Scene(app)
             { }
     void Update();
-    virtual void Init();
+    void Init();
 };
 
 
