@@ -18,11 +18,14 @@ namespace GameEngine {
         list<GameObject*> childs;
         float x;
         float y;
+        float rotation;
+        float scaleX;
+        float scaleY;
         int depth;
         string name;
     public:
         //creation functions
-        GameObject(sf::RenderWindow& app): renderWindow(app), x(0), y(0), depth(0), name("untitled")
+        GameObject(sf::RenderWindow& app): renderWindow(app), x(0), y(0), depth(0), name("untitled"), rotation(0), scaleX(1), scaleY(1)
             {    }
         virtual void Init() = 0;
 
@@ -47,6 +50,25 @@ namespace GameEngine {
         void Y(float value) {
             y = value;
         }
+        float Rotation() {
+            return rotation;
+        }
+        void Rotation(float value) {
+            rotation = value;
+        }
+        float ScaleX() {
+            return scaleX;
+        }
+        void ScaleX(float value) {
+            scaleX = value;
+        }
+        float ScaleY() {
+            return scaleY;
+        }
+        void ScaleY(float value) {
+            scaleY = value;
+        }
+
         int Depth() {
             return depth;
         }
@@ -64,7 +86,8 @@ namespace GameEngine {
         void Move(sf::Vector2f delta);
         void SwapDepth(GameObject* gameObject);
         void SetPosition(sf::Vector2f newPosition);
-
+        void Rotate(float value);
+        void SetScale(sf::Vector2f scale);
     };
 
 }

@@ -9,6 +9,7 @@ using namespace sf;
 void Cell::Update() {
     GameObject::Update();
     Move(Vector2f(1,1));
+    Rotate(1);
 }
 
 void Cell::Init() {
@@ -18,6 +19,8 @@ void Cell::Init() {
     tile->setSize(size);
     tile->setFillColor(Color(237, 194, 46));
     AddShape(tile);
+
+    SetScale(Vector2f(0.5f, 1.0f));
 
     Font font;
     if (!font.loadFromFile("arial.ttf"))

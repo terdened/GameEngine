@@ -6,13 +6,15 @@
 namespace GameEngine {
 
     void GameObject::Draw() {
+        sf::Transform transform;
+        transform.translate(x,y);
+        transform.rotate(rotation);
+        transform.scale(scaleX, scaleY);
+        sf::RenderStates renderStates(transform);
+
         list<sf::Drawable*>::iterator shapeIter;
         for (shapeIter = shapes.begin(); shapeIter != shapes.end(); shapeIter++)
-        {
-            sf::Transform offset(1,0,x,0,1,y,0,0,1);
-            sf::RenderStates renderStates(offset);
             renderWindow.draw(**shapeIter, renderStates);
-        }
 
         list<GameObject*>::iterator gameObjectIter;
         for (gameObjectIter = childs.begin(); gameObjectIter != childs.end(); gameObjectIter++)
@@ -47,5 +49,14 @@ namespace GameEngine {
     void GameObject::SetPosition(sf::Vector2f newPosition) {
         x = newPosition.x;
         y = newPosition.y;
+    }
+
+    void GameObject::Rotate(float value) {
+        rotation+=value;
+    }
+
+    void GameObject::SetScale(sf::Vector2f scale) {
+        scaleX = scale.x;
+        scaleY = scale.y;
     }
 }
