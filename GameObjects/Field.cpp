@@ -10,7 +10,7 @@ using namespace sf;
 
 void Field::Update() {
     GameObject::Update();
-    Rotate(1);
+    //Rotate(1);
 }
 
 void Field::Init() {

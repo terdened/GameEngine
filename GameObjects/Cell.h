@@ -11,8 +11,10 @@ using namespace GameEngine;
 
 class Cell : public GameObject {
 private:
+    int value;
+    sf::Color GetColor(int value);
 public:
-    Cell(sf::RenderWindow& app): GameObject(app)
+    Cell(sf::RenderWindow& app): GameObject(app), value(512)
         { }
     void Update();
     void Init();
