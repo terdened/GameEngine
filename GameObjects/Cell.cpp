@@ -30,9 +30,9 @@ void Cell::Init(ResourceManager* resourceManager) {
     SetPivotPoint(Vector2f(50, 50));
 
     sf::Text* text = new Text();
-    sf::Font font = *((FontResource*)this->resourceManager->GetElement("font"))->Font();
+    sf::Font* font = ((FontResource*)this->resourceManager->GetElement("font"))->Font();
 
-    text->setFont(font);
+    text->setFont(*font);
 
     String stringValue = to_string(value);
     text->setString(stringValue);
