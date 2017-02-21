@@ -17,9 +17,9 @@ private:
     unsigned long refCount;
 
 public:
-    Resource(const unsigned int handle, const string& name, const string& path): handle(handle), name(name), path(path)
+    Resource(const unsigned int handle, const string& filename, const string& path, const string& name):
+            handle(handle), filename(filename), path(path), name(name)
         {}
-    ~Resource();
 
     void DecRef();
     void IncRef();

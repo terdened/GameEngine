@@ -3,7 +3,7 @@ project(Game)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp Models/TileModel.cpp Models/TileModel.h Models/Field.cpp Models/FieldModel.h Models/BaseModel.cpp Models/BaseModel.h Views/BaseView.cpp Views/BaseView.h Views/FieldView.cpp Views/FieldView.h Views/TileView.cpp Views/TileView.h Core/GameObject.cpp Core/GameObject.h GameObjects/Cell.cpp GameObjects/Cell.h Core/Scene.cpp Core/Scene.h Scenes/MainScene.cpp Scenes/MainScene.h GameObjects/Field.cpp GameObjects/Field.h ResourceManagers/MainSceneResourceManager.cpp ResourceManagers/MainSceneResourceManager.h Core/ResourceManager/Resource.cpp Core/ResourceManager/Resource.h Core/ResourceManager/ResourceManager.cpp Core/ResourceManager/ResourceManager.h Core/ResourceManager/FontResource.cpp Core/ResourceManager/FontResource.h)
+set(SOURCE_FILES main.cpp Core/GameObject.cpp Core/GameObject.h GameObjects/Cell.cpp GameObjects/Cell.h Core/Scene.cpp Core/Scene.h Scenes/MainScene.cpp Scenes/MainScene.h GameObjects/Field.cpp GameObjects/Field.h Core/ResourceManager/Resource.cpp Core/ResourceManager/Resource.h Core/ResourceManager/ResourceManager.cpp Core/ResourceManager/ResourceManager.h Core/ResourceManager/FontResource.cpp Core/ResourceManager/FontResource.h)
 add_executable(Game ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

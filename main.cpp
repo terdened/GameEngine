@@ -1,19 +1,16 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Views/FieldView.h"
 #include "Scenes/MainScene.h"
-#include "ResourceManagers/MainSceneResourceManager.h"
 #include "Core/ResourceManager/ResourceManager.h"
 #include "Core/ResourceManager/FontResource.h"
 
 using namespace sf;
 using namespace std;
-using namespace Match2048;
 
 int W = 1200;
 int H = 800;
 
-static ResourceManager<FontResource> resourceManager();
+static ResourceManager* resourceManager;
 
 int main() {
     srand(time(0));
@@ -22,9 +19,10 @@ int main() {
     app.setFramerateLimit(60);
 
     MainScene scene(app);
-    resourceManager().Add("arial.ttf");
+    resourceManager = new ResourceManager(nullptr);
+    resourceManager->Add<FontResource>("arial.ttf", "./", "font");
 
-    scene.Init();
+    scene.Init(resourceManager);
 
     while (app.isOpen()) {
         Event event;

@@ -15,13 +15,14 @@ namespace GameEngine {
     private:
         list<GameObject*> childs;
     protected:
+        ResourceManager* resourceManager;
         sf::RenderWindow& renderWindow;
     public:
         Scene(sf::RenderWindow& app): renderWindow(app)
                 { }
         void Draw();
         virtual void Update();
-        virtual void Init() = 0;
+        virtual void Init(ResourceManager* resourceManager) = 0;
         void AddChild(GameObject* child);
     };
 }

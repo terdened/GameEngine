@@ -6,6 +6,7 @@
 #define GAME_CELL_H
 
 #include "../Core/GameObject.h"
+#include "../Core/ResourceManager/ResourceManager.h"
 
 using namespace GameEngine;
 
@@ -17,7 +18,7 @@ public:
     Cell(sf::RenderWindow& app): GameObject(app), value(512)
         { }
     void Update();
-    void Init();
+    void Init(ResourceManager* resourceManager);
 };
 
 

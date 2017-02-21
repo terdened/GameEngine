@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <list>
+#include "ResourceManager/ResourceManager.h"
 
 using namespace std;
 
@@ -26,12 +27,13 @@ namespace GameEngine {
         float pivotY;
     protected:
         sf::RenderWindow& renderWindow;
+        ResourceManager* resourceManager;
     public:
         //creation functions
         GameObject(sf::RenderWindow& app): renderWindow(app), x(0), y(0), depth(0), name("untitled"), rotation(0),
                                            scaleX(1), scaleY(1), pivotX(0), pivotY(0)
             {    }
-        virtual void Init() = 0;
+        virtual void Init(ResourceManager* resourceManager) = 0;
 
         //time erase functions
         void Draw(sf::Transform parentTransform);

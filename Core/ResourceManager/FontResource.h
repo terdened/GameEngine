@@ -9,17 +9,18 @@
 #include <SFML/Graphics/Font.hpp>
 #include "Resource.h"
 
-class FontResource : Resource {
+class FontResource : public Resource {
 private:
-    sf::Font font;
+    sf::Font* font;
 public:
-    FontResource(const unsigned int handle, const string& name, const string& path): Resource(handle, name, path) {
-        font = sf::Font();
-        if (!font.loadFromFile(path+name))
+    FontResource(const unsigned int handle, const string& filename, const string& path, const string& name = NULL):
+            Resource(handle, filename, path, name) {
+        font = new sf::Font();
+        if (!font->loadFromFile(path+filename))
             throw new std::exception;
     }
 
-    sf::Font Font() {
+    sf::Font* Font() {
         return font;
     }
 };

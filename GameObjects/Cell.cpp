@@ -3,8 +3,7 @@
 //
 
 #include "Cell.h"
-#include "../ResourceManagers/MainSceneResourceManager.h"
-#include <string>
+#include "../Core/ResourceManager/FontResource.h"
 #include <sstream>
 
 using namespace sf;
@@ -20,7 +19,8 @@ void Cell::Update() {
     GameObject::Update();
 }
 
-void Cell::Init() {
+void Cell::Init(ResourceManager* resourceManager) {
+    this->resourceManager = resourceManager;
     RectangleShape* tile = new RectangleShape();
     tile->setPosition(3, 3);
     Vector2f size(94, 94);
@@ -29,9 +29,10 @@ void Cell::Init() {
     AddShape(tile);
     SetPivotPoint(Vector2f(50, 50));
 
-    MainSceneResourceManager r;
     sf::Text* text = new Text();
-    text->setFont(MainSceneResourceManager::font);
+    sf::Font font = *((FontResource*)this->resourceManager->GetElement("font"))->Font();
+
+    text->setFont(font);
 
     String stringValue = to_string(value);
     text->setString(stringValue);

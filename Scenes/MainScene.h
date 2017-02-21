@@ -15,7 +15,7 @@ public:
     MainScene(sf::RenderWindow& app): Scene(app)
             { }
     void Update();
-    void Init();
+    void Init(ResourceManager* resourceManager) override;
 };
 
 

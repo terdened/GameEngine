@@ -9,50 +9,56 @@
 #include <string>
 #include <algorithm>
 #include "Resource.h"
+#include "FontResource.h"
 
 using namespace std;
 
-template<class TResource>
 class ResourceManager {
 private:
-    void (*createResource)(TResource**, const unsigned int, const string &, const string &);
+    void (*createResource)(Resource**, const unsigned int, const string &, const string &);
     stack<unsigned int> handles;
-    vector<TResource*> list;
+    vector<Resource*> list;
 public:
-    ResourceManager(void (*createResource)(TResource**, const unsigned int, const string &, const string &)): createResource(createResource)
+    ResourceManager(void (*createResource)(Resource**, const unsigned int, const string &, const string &)): createResource(createResource)
         {}
-    ~Resource();
+    ~ResourceManager();
 
-    unsigned int Add(const string& name, const string& path = "./") {
+    template <class TResource>
+    unsigned int Add(const string& filename, const string& path = "./", const string& name = NULL) {
         unsigned int handle = 1;
         if(handles.size() > 0)
             handle = handles.top() + 1;
 
 
-        TResource* newResource = new TResource(handle, name, path);
+        TResource* newResource = new TResource(handle, filename, path, name);
         list.push_back(newResource);
         handles.push(handle);
     }
 
-    TResource* GetElement(const unsigned int handle){
-        vector<TResource*>::iterator element = find_if(list.begin(),list.end(),ResourceComparison(handle));
+    Resource* GetElement(const unsigned int handle){
+        vector<Resource*>::iterator element = find_if(list.begin(),list.end(),ResourceComparison(handle));
         return *element;
     }
 
 
 
-    TResource* GetElement(const string& name, const string& path){
-        vector<TResource*>::iterator element = find_if(list.begin(),list.end(),ResourceNameComparison(name, path));
+    Resource* GetElement(const string& filename, const string& path){
+        vector<Resource*>::iterator element = find_if(list.begin(),list.end(),ResourceFilenameComparison(filename, path));
+        return *element;
+    }
+
+    Resource* GetElement(const string& name){
+        vector<Resource*>::iterator element = find_if(list.begin(),list.end(),ResourceNameComparison(name));
         return *element;
     }
 
     void Remove(const unsigned int handle){
-        vector<TResource*>::iterator element = remove_if(list.begin(),list.end(),ResourceComparison(handle));
+        vector<Resource*>::iterator element = remove_if(list.begin(),list.end(),ResourceComparison(handle));
     }
 
     void EmptyList();
 
-    vector<TResource*> List(){
+    vector<Resource*> List(){
         return list;
     };
 
@@ -60,23 +66,34 @@ public:
     {
         explicit ResourceComparison(const unsigned int handle): handle(handle)
         { }
-        inline bool operator()(const TResource & resource) const {
-            return resource.Handle == handle;
+        inline bool operator()(Resource* resource) const {
+            return resource->Handle() == handle;
         }
     private:
         unsigned int handle;
     };
 
+    struct ResourceFilenameComparison
+    {
+        explicit ResourceFilenameComparison(const string& filename, const string& path): filename(filename), path(path)
+        { }
+        inline bool operator()(Resource* resource) const {
+            return resource->Filename() == filename && resource->Path() == path;
+        }
+    private:
+        string filename;
+        string path;
+    };
+
     struct ResourceNameComparison
     {
-        explicit ResourceNameComparison(const string& name, const string& path): name(name), path(path)
+        explicit ResourceNameComparison(const string& name): name(name)
         { }
-        inline bool operator()(const TResource & resource) const {
-            return resource.name == name && resource.path == path;
+        inline bool operator()(Resource* resource) const {
+            return resource->Name() == name;
         }
     private:
         string name;
-        string path;
     };
 };
 
