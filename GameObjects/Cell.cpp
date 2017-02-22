@@ -4,6 +4,7 @@
 
 #include "Cell.h"
 #include "../Core/ResourceManager/FontResource.h"
+#include "../Core/Silhouette/RectangularSilhouette.h"
 #include <sstream>
 
 using namespace sf;
@@ -41,6 +42,9 @@ void Cell::Init(ResourceManager* resourceManager) {
     int textLength = 18 * stringValue.getSize();
     int textLeftOffset = (100 - textLength)/2;
     int textTopOffset = (100 - 46)/2;
+
+    auto silhouette = new RectangularSilhouette(&x, &y, 100, 100);
+    AddSilhouette(silhouette);
 
     text->setPosition(textLeftOffset, textTopOffset);
 

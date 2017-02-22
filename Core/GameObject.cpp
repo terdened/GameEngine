@@ -3,6 +3,8 @@
 //
 
 #include "GameObject.h"
+#include "Silhouette/Silhouette.h"
+
 namespace GameEngine {
 
     void GameObject::Draw(sf::Transform parentTransform) {
@@ -65,5 +67,9 @@ namespace GameEngine {
     void GameObject::SetPivotPoint(sf::Vector2f pivotPoint) {
         pivotX = pivotPoint.x;
         pivotY = pivotPoint.y;
+    }
+
+    void GameObject::AddSilhouette(Silhouette* silhouette) {
+        silhouettes.push_back(silhouette);
     }
 }

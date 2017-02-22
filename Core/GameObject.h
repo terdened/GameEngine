@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "ResourceManager/ResourceManager.h"
+#include "Silhouette/Silhouette.h"
 
 using namespace std;
 
@@ -16,8 +17,7 @@ namespace GameEngine {
     private:
         list<sf::Drawable*> shapes;
         list<GameObject*> childs;
-        float x;
-        float y;
+        list<Silhouette*> silhouettes;
         float rotation;
         float scaleX;
         float scaleY;
@@ -26,6 +26,8 @@ namespace GameEngine {
         float pivotX;
         float pivotY;
     protected:
+        float x;
+        float y;
         sf::RenderWindow& renderWindow;
         ResourceManager* resourceManager;
     public:
@@ -42,6 +44,7 @@ namespace GameEngine {
         //structure functions
         void AddChild(GameObject* child);
         void AddShape(sf::Drawable* shape);
+        void AddSilhouette(Silhouette* silhouette);
 
         //field accessors
         float X() {
