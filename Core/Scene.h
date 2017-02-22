@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
+#include "ResourceManager/ResourceLoader.h"
 
 using namespace std;
 
@@ -17,12 +18,13 @@ namespace GameEngine {
     protected:
         ResourceManager* resourceManager;
         sf::RenderWindow& renderWindow;
+        ResourceLoader* resourceLoader;
     public:
         Scene(sf::RenderWindow& app): renderWindow(app)
                 { }
         void Draw();
         virtual void Update();
-        virtual void Init(ResourceManager* resourceManager) = 0;
+        virtual void Init() = 0;
         void AddChild(GameObject* child);
     };
 }

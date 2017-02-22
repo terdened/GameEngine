@@ -3,14 +3,15 @@
 #include "Scenes/MainScene.h"
 #include "Core/ResourceManager/ResourceManager.h"
 #include "Core/ResourceManager/FontResource.h"
+#include "Core/ResourceManager/TextureResource.h"
+#include "ResourceLoaders/MainSceneResourceLoader.h"
 
 using namespace sf;
 using namespace std;
+using namespace GameEngine;
 
 int W = 1200;
 int H = 800;
-
-static ResourceManager* resourceManager;
 
 int main() {
     srand(time(0));
@@ -19,10 +20,7 @@ int main() {
     app.setFramerateLimit(60);
 
     MainScene scene(app);
-    resourceManager = new ResourceManager(nullptr);
-    resourceManager->Add<FontResource>("arial.ttf", "./", "font");
-
-    scene.Init(resourceManager);
+    scene.Init();
 
     while (app.isOpen()) {
         Event event;

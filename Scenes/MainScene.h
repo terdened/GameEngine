@@ -14,8 +14,13 @@ class MainScene : public Scene {
 public:
     MainScene(sf::RenderWindow& app): Scene(app)
             { }
+
+    ~MainScene() {
+        resourceManager->EmptyList();
+    }
+
     void Update();
-    void Init(ResourceManager* resourceManager) override;
+    void Init() override;
 };
 
 

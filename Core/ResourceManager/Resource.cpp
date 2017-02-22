@@ -3,11 +3,3 @@
 //
 
 #include "Resource.h"
-
-void Resource::IncRef() {
-    refCount++;
-}
-
-void Resource::DecRef() {
-    refCount--;
-}
