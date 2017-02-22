@@ -29,6 +29,7 @@ namespace GameEngine {
     }
 
     void GameObject::AddChild(GameObject* child) {
+        child->Init(resourceManager);
         childs.push_back(child);
     }
 

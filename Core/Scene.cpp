@@ -17,6 +17,7 @@ namespace GameEngine {
     }
 
     void Scene::AddChild(GameObject* child) {
+        child->Init(resourceManager);
         childs.push_back(child);
     }
 }

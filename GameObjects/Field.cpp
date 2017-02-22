@@ -27,7 +27,6 @@ void Field::Init(ResourceManager* resourceManager) {
     for(int i=0; i<5; i++){
         for(int j=0; j<5; j++){
             Cell* cell = new Cell(renderWindow);
-            cell->Init(this->resourceManager);
             cell->SetPosition(sf::Vector2f(j*100, i*100));
             AddChild(cell);
         }

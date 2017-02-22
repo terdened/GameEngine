@@ -16,7 +16,6 @@ void MainScene::Update() {
 void MainScene::Init(ResourceManager* resourceManager) {
     this->resourceManager = resourceManager;
     Field *field = new Field(renderWindow);
-    field->Init(this->resourceManager);
     field->SetPosition(sf::Vector2f(350, 150));
     AddChild(field);
 }
