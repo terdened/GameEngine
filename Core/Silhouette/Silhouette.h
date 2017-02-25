@@ -6,16 +6,22 @@
 #define GAME_SILHOUETTE_H
 
 
-class Silhouette {
-protected:
-    float* x;
-    float* y;
-public:
-    Silhouette(float* x, float* y): x(x), y(y)
+#include <SFML/Graphics/RenderWindow.hpp>
+
+namespace GameEngine {
+    class GameObject;
+    class Silhouette {
+    protected:
+        GameObject* gameObject = nullptr;
+    public:
+        Silhouette(GameObject* gameObject): gameObject(gameObject)
         {}
 
-    virtual bool IsMouseOn() = 0;
-};
+        virtual bool IsMouseOn(sf::RenderWindow& renderWindow) = 0;
+    };
+
+
+}
 
 
 #endif //GAME_SILHOUETTE_H

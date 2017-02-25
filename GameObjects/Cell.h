@@ -14,6 +14,7 @@ class Cell : public GameObject {
 private:
     int value;
     sf::Color GetColor(int value);
+    sf::RectangleShape* tile;
 public:
     Cell(sf::RenderWindow& app): GameObject(app), value(512)
         { }

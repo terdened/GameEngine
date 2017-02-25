@@ -4,11 +4,14 @@
 
 #include <SFML/Window/Mouse.hpp>
 #include "RectangularSilhouette.h"
+#include "../GameObject.h"
 
-bool RectangularSilhouette::IsMouseOn() {
-    float mouseX = sf::Mouse::getPosition().x;
-    float mouseY = sf::Mouse::getPosition().y;
+namespace GameEngine {
+    bool RectangularSilhouette::IsMouseOn(sf::RenderWindow& renderWindow) {
+        float mouseX = sf::Mouse::getPosition(renderWindow).x;
+        float mouseY = sf::Mouse::getPosition(renderWindow).y;
 
-    return mouseX >= mouseX && mouseX <= mouseX + width
-           && mouseY >= mouseY && mouseY <= mouseY + height;
+        return mouseX >= gameObject->GlobalX() && mouseX <= gameObject->GlobalX() + width
+               && mouseY >= gameObject->GlobalY() && mouseY <= gameObject->GlobalY() + height;
+    }
 }

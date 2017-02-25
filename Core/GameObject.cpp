@@ -3,7 +3,6 @@
 //
 
 #include "GameObject.h"
-#include "Silhouette/Silhouette.h"
 
 namespace GameEngine {
 
@@ -32,6 +31,7 @@ namespace GameEngine {
 
     void GameObject::AddChild(GameObject* child) {
         child->Init(resourceManager);
+        child->Parent(this);
         childs.push_back(child);
     }
 
@@ -71,5 +71,14 @@ namespace GameEngine {
 
     void GameObject::AddSilhouette(Silhouette* silhouette) {
         silhouettes.push_back(silhouette);
+    }
+
+    bool GameObject::IsMouseOn() {
+        list<Silhouette*>::iterator silhouetteIter;
+        for (silhouetteIter = silhouettes.begin(); silhouetteIter != silhouettes.end(); silhouetteIter++)
+            if((*silhouetteIter)->IsMouseOn(renderWindow))
+                return true;
+
+        return false;
     }
 }

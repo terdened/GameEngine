@@ -26,6 +26,7 @@ namespace GameEngine {
         float pivotX;
         float pivotY;
     protected:
+        GameObject* parent = nullptr;
         float x;
         float y;
         sf::RenderWindow& renderWindow;
@@ -52,6 +53,19 @@ namespace GameEngine {
         }
         void X(float value) {
             x = value;
+        }
+        float GlobalX() {
+            if(parent == nullptr)
+                return  x;
+            return parent->x + x;
+        }
+        float GlobalY() {
+            if(parent == nullptr)
+                return  y;
+            return parent->y + y;
+        }
+        void Parent(GameObject* parent){
+            this->parent = parent;
         }
         float Y() {
             return y;
@@ -112,8 +126,8 @@ namespace GameEngine {
         void Rotate(float value);
         void SetScale(sf::Vector2f scale);
         void SetPivotPoint(sf::Vector2f pivotPoint);
+        bool IsMouseOn();
     };
-
 }
 
 

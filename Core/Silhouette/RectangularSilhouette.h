@@ -8,16 +8,18 @@
 
 #include "Silhouette.h"
 
-class RectangularSilhouette: public Silhouette {
-protected:
-    float width;
-    float height;
-public:
-    RectangularSilhouette(float* x, float* y, float width, float height): Silhouette(x,y), width(width), height(height)
+namespace GameEngine{
+    class RectangularSilhouette: public Silhouette {
+    protected:
+        float width;
+        float height;
+    public:
+        RectangularSilhouette(GameObject* gameObject, float width, float height): Silhouette(gameObject), width(width), height(height)
         {}
 
-    bool IsMouseOn() override;
-};
+        bool IsMouseOn(sf::RenderWindow& renderWindow) override;
+    };
+}
 
 
 #endif //GAME_RECTANGULARSILHOUETTE_H

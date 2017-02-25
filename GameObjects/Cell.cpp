@@ -3,7 +3,6 @@
 //
 
 #include "Cell.h"
-#include "../Core/ResourceManager/FontResource.h"
 #include "../Core/Silhouette/RectangularSilhouette.h"
 #include <sstream>
 
@@ -13,16 +12,21 @@ template < typename T > std::string to_string( const T& n )
 {
     std::ostringstream stm;
     stm << n ;
-    return stm.str() ;
+    return stm.str();
 }
 
 void Cell::Update() {
     GameObject::Update();
+
+    if(IsMouseOn())
+        tile->setFillColor(Color(200,30,30));
+    else
+        tile->setFillColor(GetColor(value));
 }
 
 void Cell::Init(ResourceManager* resourceManager) {
     this->resourceManager = resourceManager;
-    RectangleShape* tile = new RectangleShape();
+    tile = new RectangleShape();
     tile->setPosition(3, 3);
     Vector2f size(94, 94);
     tile->setSize(size);
@@ -43,7 +47,7 @@ void Cell::Init(ResourceManager* resourceManager) {
     int textLeftOffset = (100 - textLength)/2;
     int textTopOffset = (100 - 46)/2;
 
-    auto silhouette = new RectangularSilhouette(&x, &y, 100, 100);
+    auto silhouette = new RectangularSilhouette(this, 100, 100);
     AddSilhouette(silhouette);
 
     text->setPosition(textLeftOffset, textTopOffset);
