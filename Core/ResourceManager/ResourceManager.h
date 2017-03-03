@@ -5,9 +5,10 @@
 #ifndef GAME_RESOURCEMANAGER_H
 #define GAME_RESOURCEMANAGER_H
 #include <stack>
-#include <vector>
+#include <map>
 #include <string>
 #include <algorithm>
+#include <memory>
 #include "Resource.h"
 #include "FontResource.h"
 
@@ -19,7 +20,7 @@ namespace GameEngine {
         void (*createResource)(Resource **, const unsigned int, const string &, const string &);
 
         stack<unsigned int> handles;
-        vector<Resource *> list;
+        map<string, shared_ptr<Resource>> resources;
     public:
         ResourceManager(void (*createResource)(Resource **, const unsigned int, const string &, const string &))
                 : createResource(createResource) {}
@@ -27,40 +28,24 @@ namespace GameEngine {
         ~ResourceManager();
 
         template<class TResource>
-        unsigned int Add(const string &filename, const string &path = "./", const string &name = NULL) {
+        unsigned int Add(const string &filename, const string &name, const string &path = "./") {
             unsigned int handle = 1;
             if (handles.size() > 0)
                 handle = handles.top() + 1;
 
-            TResource *newResource = new TResource(handle, filename, path, name);
-            list.push_back(newResource);
+            shared_ptr<TResource> newResource(new TResource(handle, filename, path, name));
+            resources[name] = newResource;
             handles.push(handle);
         }
 
         template<class TResource>
-        TResource *GetElement(const unsigned int handle) {
-            auto element = find_if(list.begin(), list.end(),
-                                   [&handle](Resource *resource) { return resource->Handle() == handle; });
-            return (TResource *) *element;
+        shared_ptr<TResource> GetElement(const string &name) {
+            auto element = resources[name];
+            return std::static_pointer_cast<TResource> (element);
         }
 
-        template<class TResource>
-        TResource *GetElement(const string &filename, const string &path) {
-            auto element = find_if(list.begin(), list.end(), [&filename, &path](Resource *resource) {
-                return resource->Filename() == filename && resource->Path() == path;
-            });
-            return (TResource *) *element;
-        }
-
-        template<class TResource>
-        TResource *GetElement(const string &name) {
-            auto element = find_if(list.begin(), list.end(),
-                                   [&name](Resource *resource) { return resource->Name() == name; });
-            return (TResource *) *element;
-        }
-
-        vector<Resource *> List() {
-            return list;
+        map<string, shared_ptr<Resource>> Resources() {
+            return resources;
         };
 
         void Remove(const unsigned int handle);

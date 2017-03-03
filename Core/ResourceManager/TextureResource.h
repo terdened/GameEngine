@@ -31,6 +31,10 @@ namespace GameEngine {
         sf::Texture *Texture() {
             return texture;
         }
+
+        ~TextureResource() {
+            delete texture;
+        }
     };
 }
 

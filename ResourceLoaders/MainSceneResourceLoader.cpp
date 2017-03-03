@@ -6,6 +6,6 @@
 #include "../Core/ResourceManager/TextureResource.h"
 
 void MainSceneResourceLoader::Load() {
-    resourceManager->Add<FontResource>("arial.ttf", "./", "font");
-    resourceManager->Add<TextureResource>("logo.jpg", "./", "logo");
+    resourceManager->Add<FontResource>("arial.ttf", "font", "./");
+    resourceManager->Add<TextureResource>("logo.jpg", "logo", "./");
 }

@@ -15,6 +15,9 @@ namespace GameEngine {
         ResourceLoader(ResourceManager* resourceManager): resourceManager(resourceManager)
             { }
 
+        ~ResourceLoader() {
+            delete resourceManager;
+        }
         virtual void Load() = 0;
     };
 }

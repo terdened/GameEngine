@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics/Font.hpp>
 #include <iostream>
+#include <memory>
 #include "Resource.h"
 
 namespace GameEngine {
@@ -28,6 +29,10 @@ namespace GameEngine {
 
         sf::Font* Font() {
             return font;
+        }
+
+        ~FontResource() {
+            delete font;
         }
     };
 }
