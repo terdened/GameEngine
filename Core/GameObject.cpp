@@ -14,28 +14,28 @@ namespace GameEngine {
         transform.scale(scaleX, scaleY);
         sf::RenderStates renderStates(transform);
 
-        list<sf::Drawable*>::iterator shapeIter;
+        list<shared_ptr<sf::Drawable>>::iterator shapeIter;
         for (shapeIter = shapes.begin(); shapeIter != shapes.end(); shapeIter++)
             renderWindow.draw(**shapeIter, renderStates);
 
-        list<GameObject*>::iterator gameObjectIter;
+        list<shared_ptr<GameObject>>::iterator gameObjectIter;
         for (gameObjectIter = childs.begin(); gameObjectIter != childs.end(); gameObjectIter++)
             (**gameObjectIter).Draw(transform);
     }
 
     void GameObject::Update() {
-        list<GameObject*>::iterator iter;
+        list<shared_ptr<GameObject>>::iterator iter;
         for (iter = childs.begin(); iter != childs.end(); iter++)
             (**iter).Update();
     }
 
-    void GameObject::AddChild(GameObject* child) {
+    void GameObject::AddChild(shared_ptr<GameObject> child) {
         child->Init(resourceManager);
         child->Parent(this);
         childs.push_back(child);
     }
 
-    void GameObject::AddShape(sf::Drawable* shape) {
+    void GameObject::AddShape(shared_ptr<sf::Drawable> shape) {
         shapes.push_back(shape);
     }
 
@@ -69,12 +69,12 @@ namespace GameEngine {
         pivotY = pivotPoint.y;
     }
 
-    void GameObject::AddSilhouette(Silhouette* silhouette) {
+    void GameObject::AddSilhouette(shared_ptr<Silhouette> silhouette) {
         silhouettes.push_back(silhouette);
     }
 
     bool GameObject::IsMouseOn() {
-        list<Silhouette*>::iterator silhouetteIter;
+        list<shared_ptr<Silhouette>>::iterator silhouetteIter;
         for (silhouetteIter = silhouettes.begin(); silhouetteIter != silhouettes.end(); silhouetteIter++)
             if((*silhouetteIter)->IsMouseOn(renderWindow))
                 return true;

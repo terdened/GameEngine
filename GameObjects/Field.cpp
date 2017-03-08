@@ -16,7 +16,7 @@ void Field::Update() {
 
 void Field::Init(ResourceManager* resourceManager) {
     this->resourceManager = resourceManager;
-    RectangleShape* tile = new RectangleShape();
+    auto tile = std::make_shared<RectangleShape>();
     Vector2f size(500, 500);
     tile->setSize(size);
     tile->setFillColor(Color(128, 128, 128));
@@ -26,7 +26,7 @@ void Field::Init(ResourceManager* resourceManager) {
 
     for(int i=0; i<5; i++){
         for(int j=0; j<5; j++){
-            Cell* cell = new Cell(renderWindow);
+            auto cell = std::make_shared<Cell>(renderWindow);
             cell->SetPosition(sf::Vector2f(j*100, i*100));
             AddChild(cell);
         }

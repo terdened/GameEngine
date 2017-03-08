@@ -26,7 +26,7 @@ void Cell::Update() {
 
 void Cell::Init(ResourceManager* resourceManager) {
     this->resourceManager = resourceManager;
-    tile = new RectangleShape();
+    tile = std::make_shared<RectangleShape>();
     tile->setPosition(3, 3);
     Vector2f size(94, 94);
     tile->setSize(size);
@@ -34,7 +34,7 @@ void Cell::Init(ResourceManager* resourceManager) {
     AddShape(tile);
     SetPivotPoint(Vector2f(50, 50));
 
-    sf::Text* text = new Text();
+    auto text = std::make_shared<Text>();
     sf::Font* font = this->resourceManager->GetElement<FontResource>("font")->Font();
 
     text->setFont(*font);
@@ -47,7 +47,7 @@ void Cell::Init(ResourceManager* resourceManager) {
     int textLeftOffset = (100 - textLength)/2;
     int textTopOffset = (100 - 46)/2;
 
-    auto silhouette = new RectangularSilhouette(this, 100, 100);
+    auto silhouette = std::make_shared<RectangularSilhouette>(this, 100, 100);
     AddSilhouette(silhouette);
 
     text->setPosition(textLeftOffset, textTopOffset);

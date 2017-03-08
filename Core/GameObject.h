@@ -15,9 +15,9 @@ using namespace std;
 namespace GameEngine {
     class GameObject {
     private:
-        list<sf::Drawable*> shapes;
-        list<GameObject*> childs;
-        list<Silhouette*> silhouettes;
+        list<shared_ptr<sf::Drawable>> shapes;
+        list<shared_ptr<GameObject>> childs;
+        list<shared_ptr<Silhouette>> silhouettes;
         float rotation;
         float scaleX;
         float scaleY;
@@ -43,9 +43,9 @@ namespace GameEngine {
         virtual void Update();
 
         //structure functions
-        void AddChild(GameObject* child);
-        void AddShape(sf::Drawable* shape);
-        void AddSilhouette(Silhouette* silhouette);
+        void AddChild(shared_ptr<GameObject> child);
+        void AddShape(shared_ptr<sf::Drawable> shape);
+        void AddSilhouette(shared_ptr<Silhouette> silhouette);
 
         //field accessors
         float X() {

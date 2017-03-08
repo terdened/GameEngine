@@ -14,7 +14,7 @@ void Logo::Update() {
 
 void Logo::Init(ResourceManager* resourceManager) {
     this->resourceManager = resourceManager;
-    auto logo = new Sprite();
+    auto logo = std::make_shared<Sprite>();
     auto texture = this->resourceManager->GetElement<TextureResource>("logo")->Texture();
     logo->setTexture(*texture);
     AddShape(logo);
