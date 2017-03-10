@@ -7,8 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <list>
-#include "ResourceManager/ResourceManager.h"
-#include "Silhouette/Silhouette.h"
+#include "../ResourceManager/ResourceManager.h"
+#include "../Silhouette/Silhouette.h"
 
 using namespace std;
 

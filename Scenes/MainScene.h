@@ -5,7 +5,7 @@
 #ifndef GAME_MAINSCENE_H
 #define GAME_MAINSCENE_H
 
-#include "../Core/Scene.h"
+#include "../Core/Structure/Scene.h"
 
 using  namespace GameEngine;
 

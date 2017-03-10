@@ -5,7 +5,7 @@
 #ifndef GAME_CELL_H
 #define GAME_CELL_H
 
-#include "../Core/GameObject.h"
+#include "../Core/Structure/GameObject.h"
 #include "../Core/ResourceManager/ResourceManager.h"
 
 using namespace GameEngine;

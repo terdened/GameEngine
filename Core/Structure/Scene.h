@@ -7,8 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
-#include "ResourceManager/ResourceLoader.h"
-#include "Silhouette/Silhouette.h"
+#include "../ResourceManager/ResourceLoader.h"
+#include "../Silhouette/Silhouette.h"
 
 using namespace std;
 

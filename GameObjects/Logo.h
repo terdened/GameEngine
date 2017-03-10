@@ -5,17 +5,16 @@
 #ifndef GAME_LOGO_H
 #define GAME_LOGO_H
 
-#include "../Core/GameObject.h"
 #include "../Core/ResourceManager/ResourceManager.h"
+#include "../Core/Structure/Sprite.h"
 
 using namespace GameEngine;
 
-class Logo : public GameObject{
+class Logo : public SpriteGameObject{
 public:
-    Logo(sf::RenderWindow& app): GameObject(app)
-    { }
+    Logo(sf::RenderWindow& app, string resourceName): SpriteGameObject(app, resourceName)
+        {   }
     void Update();
-    void Init(ResourceManager* resourceManager);
 };
 
 

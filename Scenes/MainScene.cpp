@@ -24,9 +24,9 @@ void MainScene::Init() {
     field->SetPosition(sf::Vector2f(350, 150));
     AddChild(field);
 
-    auto logo = new Logo(renderWindow);
+    auto logo = new Logo(renderWindow, "logo");
+    AddChild(logo);
     logo->SetPosition(sf::Vector2f(15,15));
     logo->SetScale(sf::Vector2f(0.5f, 0.5f));
     logo->SetPivotPoint(sf::Vector2f(57.5f, 57.5f));
-    AddChild(logo);
 }
